@@ -1,35 +1,16 @@
 import streamlit as st
 import requests
 
-# Ваш API-ключ OpenWeatherMap
-API_KEY = 'ваш_ключ_API'
+st.title("Погодное приложение")
 
-# Функция для получения данных о погоде
-def get_weather(city):
-    BASE_URL = 'http://api.openweathermap.org/data/2.5/weather'
-    params = {
-        'q': city,
-        'appid': API_KEY,
-        'units': 'metric'  # Градусы Цельсия
-    }
-    response = requests.get(BASE_URL, params=params)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
-
-# Основная часть приложения Streamlit
-st.title("Погодное приложение")  # Заголовок
-
-# Создаем выпадающий список для выбора города
 city = st.selectbox("Выберите город:", ['London', 'New York', 'Tokyo', 'Moscow', 'Madrid'])
 
-# Кнопка для получения погоды
 if st.button("Получить погоду"):
-    weather_data = get_weather(city)
+    request = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid=b996270006c7d6e003daadb143d5ae39&units=metric")
+    weather_data = request.json()
     if weather_data:
         temperature = weather_data['main']['temp']
         description = weather_data['weather'][0]['description']
         st.success(f"Температура в {city}: {temperature}°C, Описание: {description}")
     else:
-        st.error("Не удалось получить данные о погоде. Убедитесь, что город введен правильно.")
+        st.error('{"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}')
