@@ -9,7 +9,7 @@ with st.form(key='my_form'):
 city = st.selectbox("Выберите город:", ['London', 'New York', 'Tokyo', 'Moscow', 'Madrid'])
 url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={akey}&units=metric"
 if st.button("Получить погоду"):
-    request = requests.get(akey)
+    request = requests.get(url)
     datatext = request.json()
     if data:
         temperature = datatext['main']['temp']
