@@ -1,8 +1,9 @@
 import streamlit as st
 import requests
+import pandas as pd
 
-st.title("Погодное приложение")
-file= st.file_uploader("Выберите файл", type=["csv"])
+st.title("Погодное приложение Сиад Кнад")
+file= st.file_uploader("Выберите файл с датасетом погоды", type=["csv"])
 if file is not None:
     df = pd.read_csv(file)
     st.write("Содержимое вашего файла:")
