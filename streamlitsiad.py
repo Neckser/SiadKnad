@@ -23,5 +23,3 @@ if akey:
             st.success(f"Температура в {city}: {temperature}°C, Описание: {desc}")
         else:
             st.error('{"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}')
-else:
-    st.error('{"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}')
