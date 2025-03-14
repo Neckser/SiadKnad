@@ -9,7 +9,8 @@ if file is not None:
     st.write("Содержимое вашего файла:")
     st.dataframe(df)
 with st.form(key='my_form'):
-    akey = st.text_input("Введите ваш API-key:") 
+    akey = st.text_input("Введите ваш API-key:")
+    submit_b = st.form_submit_button("Сохранить")
 city = st.selectbox("Выберите город:", ['London', 'New York', 'Tokyo', 'Moscow', 'Madrid'])
 if akey:
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={akey}&units=metric"
