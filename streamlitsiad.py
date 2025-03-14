@@ -6,9 +6,8 @@ st.title("Погодное приложение")
 with st.form(key='my_form'):
     akey = st.text_input("Введите ваш API-key:") 
     submit_button = st.form_submit_button(label='Отправить')
-if submit_button and akey:
-    city = st.selectbox("Выберите город:", ['London', 'New York', 'Tokyo', 'Moscow', 'Madrid'])
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={akey}&units=metric"
+city = st.selectbox("Выберите город:", ['London', 'New York', 'Tokyo', 'Moscow', 'Madrid'])
+url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={akey}&units=metric"
 if st.button("Получить погоду"):
     request = requests.get(akey)
     datatext = request.json()
