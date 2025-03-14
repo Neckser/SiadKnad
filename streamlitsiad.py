@@ -2,7 +2,11 @@ import streamlit as st
 import requests
 
 st.title("Погодное приложение")
-
+file= st.file_uploader("Выберите файл", type=["csv"])
+if file is not None:
+    df = pd.read_csv(file)
+    st.write("Содержимое вашего файла:")
+    st.dataframe(df)
 with st.form(key='my_form'):
     akey = st.text_input("Введите ваш API-key:") 
 city = st.selectbox("Выберите город:", ['London', 'New York', 'Tokyo', 'Moscow', 'Madrid'])
