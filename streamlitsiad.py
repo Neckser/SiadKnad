@@ -11,7 +11,7 @@ url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={akey}&un
 if st.button("Получить погоду"):
     request = requests.get(url)
     datatext = request.json()
-    if data:
+    if datatext:
         temperature = datatext['main']['temp']
         desc = datatext['weather'][0]['description']            
         st.success(f"Температура в {city}: {temperature}°C, Описание: {desc}")
