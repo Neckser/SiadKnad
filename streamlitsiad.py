@@ -10,7 +10,7 @@ if file is not None:
     df = pd.read_csv(file)
     st.write("Содержимое вашего файла:")
     st.dataframe(df)
-with st.form():
+with st.form('forma'):
     akey = st.text_input("Введите ваш API-key:")
     submit_b = st.form_submit_button("Сохранить")
 city = st.selectbox("Выберите город:", ['London', 'New York', 'Tokyo', 'Moscow', 'Paris','Sydney', 'Berlin','Beijing','Rio de Janeiro','Dubai','Los Angeles','Singapore','Mumbai','Cairo','Mexico City'])
