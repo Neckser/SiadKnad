@@ -1,6 +1,8 @@
 import streamlit as st
 import requests
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 st.title("Погодное приложение Сиад Кнад")
 file= st.file_uploader("Выберите файл с датасетом погоды", type=["csv"])
