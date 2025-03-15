@@ -10,11 +10,11 @@ if file is not None:
     df = pd.read_csv(file)
     st.write("Содержимое вашего файла:")
     st.dataframe(df)
-with st.form('forma'):
+with st.form():
     akey = st.text_input("Введите ваш API-key:")
     submit_b = st.form_submit_button("Сохранить")
 city = st.selectbox("Выберите город:", ['London', 'New York', 'Tokyo', 'Moscow', 'Paris','Sydney', 'Berlin','Beijing','Rio de Janeiro','Dubai','Los Angeles','Singapore','Mumbai','Cairo','Mexico City'])
-if akey and file is not None:
+if akey and file not None:
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={akey}&units=metric"
     if st.button("Получить погоду"):
         request = requests.get(url)
@@ -33,14 +33,13 @@ if akey and file is not None:
             plt.figure(figsize=(12, 6))
             sns.lineplot(data=season_data, x='timestamp', y='temperature', label='Temperature')
             sns.scatterplot(data=season_data[season_data['anomalnost']], x='timestamp', y='temperature', color='red', label='Anomalies')
-            plt.axhline(y=normm + 2 * norms, color='r', linestyle='--', label='Upper Bound')
-            plt.axhline(y=normm - 2 * norms, color='r', linestyle='--', label='Lower Bound')
+            plt.axhline(y=normm + 2 * norms, color='green', linestyle='--', label='Верхняя граница')
+            plt.axhline(y=normm - 2 * norms, color='green', linestyle='--', label='Нижняя граница')
             plt.title(f'Временной ряд температуры в {city}')
             plt.xlabel("Дата")
             plt.ylabel("Температура (°C)")                
             plt.legend()
             st.pyplot(plt)
-            
         else:
             st.error('{"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}')
     
