@@ -31,7 +31,6 @@ if akey and file is not None:
             else:
                 st.warning(f"Температура в {city}: {temperature}°C - Аномальная для текущего сезона!")
             plt.figure(figsize=(12, 6))
-            sns.lineplot(data=season_data, x='timestamp', y='temperature', label='Temperature')
             sns.scatterplot(data=season_data[season_data['anomalnost']], x='timestamp', y='temperature', color='red', label='Anomalies')
             plt.axhline(y=normm + 2 * norms, color='green', linestyle='--', label='Верхняя граница')
             plt.axhline(y=normm - 2 * norms, color='green', linestyle='--', label='Нижняя граница')
