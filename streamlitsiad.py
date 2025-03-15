@@ -39,6 +39,13 @@ if akey and file is not None:
             plt.ylabel("Температура (°C)")                
             plt.legend()
             st.pyplot(plt)
+            plt.figure(figsize=(10, 5))
+            sns.barplot(data=seasonal_avg, x='season', y='temperature', palette='Set2')
+            plt.title(f'Средняя температура по сезонам для {city}')
+            plt.xlabel('Сезон')
+            plt.ylabel('Температура (°C)')
+            plt.xticks(rotation=45)
+            st.pyplot(plt)
         else:
             st.error('{"cod":401, "message": "Invalid API key. Please see https://openweathermap.org/faq#error401 for more info."}')
     
